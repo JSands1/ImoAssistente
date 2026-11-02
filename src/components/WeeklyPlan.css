@@ -1,0 +1,49 @@
+.weekly-plan { margin-top: 14px; padding: 18px; }
+.weekly-range { color: #8b857b; font-family: var(--mono); font-size: 8px; text-transform: uppercase; }
+.weekly-summary { margin: -4px 0 14px; color: #b9b2a5; font-size: 10px; }
+
+.weekly-days { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+.weekly-day { min-width: 0; padding: 11px 10px; display: flex; flex-direction: column; gap: 8px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.015); }
+.weekly-day.is-today { border-color: rgba(217, 149, 72, 0.5); background: rgba(217, 149, 72, 0.06); }
+.weekly-day header { display: flex; flex-direction: column; gap: 2px; }
+.weekly-day header strong { color: #ede8df; font-family: var(--heading); font-size: 12px; font-weight: 500; }
+.weekly-day header span { color: #8f897e; font-family: var(--mono); font-size: 8px; }
+.weekly-day.is-today header span { color: #e0a85c; }
+.weekly-day-visits { margin: 0; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); color: #a8a296; font-size: 9px; }
+.weekly-day-empty { margin: 0; color: #77746e; font-size: 9px; }
+.weekly-day ul { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; list-style: none; }
+
+.weekly-task { width: 100%; padding: 7px 8px; display: flex; align-items: flex-start; gap: 8px; border: 1px solid rgba(255, 255, 255, 0.07); background: rgba(0, 0, 0, 0.18); color: inherit; cursor: pointer; text-align: left; }
+.weekly-task:hover { border-color: rgba(217, 149, 72, 0.5); }
+.weekly-task > span { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.weekly-task strong { color: #e7e1d7; font-size: 9px; font-weight: 600; }
+.weekly-task small { display: -webkit-box; overflow: hidden; color: #8f897e; font-size: 8px; line-height: 1.4; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.weekly-task i, .weekly-legend i { width: 8px; height: 8px; margin-top: 3px; flex: 0 0 auto; border-radius: 50%; background: #77746e; }
+.weekly-task.p1 i, .weekly-legend i.p1 { background: #e0603f; }
+.weekly-task.p2 i, .weekly-legend i.p2 { background: #d98f3f; }
+.weekly-task.p3 i, .weekly-legend i.p3 { background: #78be8c; }
+.weekly-day .inline-link { align-self: flex-start; }
+
+.weekly-legend { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px 16px; color: #8b857b; font-size: 8px; }
+.weekly-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.weekly-legend i { margin-top: 0; }
+
+.weekly-health { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.weekly-health h4 { margin: 0 0 12px; color: #ede8df; font-family: var(--heading); font-size: 13px; font-weight: 500; }
+.weekly-health-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.weekly-check { padding: 11px 12px; display: flex; flex-direction: column; gap: 7px; border: 1px solid rgba(255, 255, 255, 0.08); }
+.weekly-check-head { display: flex; justify-content: space-between; gap: 10px; }
+.weekly-check-head strong { color: #e7e1d7; font-size: 10px; font-weight: 600; }
+.weekly-check-head span { color: #a8a296; font-family: var(--mono); font-size: 9px; }
+.weekly-bar { height: 5px; background: rgba(255, 255, 255, 0.08); }
+.weekly-bar i { height: 100%; display: block; background: #78be8c; }
+.weekly-check.atencao .weekly-bar i { background: #d98f3f; }
+.weekly-check.mau .weekly-bar i { background: #e0603f; }
+.weekly-check small { color: #8f897e; font-size: 8px; line-height: 1.4; }
+.weekly-missing { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; color: #a8a296; font-size: 9px; }
+
+@media (max-width: 1100px) { .weekly-days { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  .weekly-days, .weekly-health-grid { grid-template-columns: 1fr; }
+  .weekly-plan { padding: 13px; }
+}

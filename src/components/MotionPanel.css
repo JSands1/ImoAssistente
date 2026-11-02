@@ -1,0 +1,27 @@
+.motion-panel { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.motion-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; color: #d98f3f; }
+.motion-heading .eyebrow { margin: 0 0 4px; font-size: 7px; }
+.motion-heading h3 { margin: 0; color: #e7e1d7; font-family: var(--heading); font-size: 14px; font-weight: 500; }
+
+.motion-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(250px, 0.75fr); align-items: start; gap: 16px; }
+.motion-preview { position: sticky; top: 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.motion-preview canvas { width: 100%; aspect-ratio: 16 / 9; display: block; border: 1px solid rgba(255, 255, 255, 0.1); background: #090a0b; }
+.motion-empty, .motion-note { color: #948e83; font-size: 9px; line-height: 1.55; }
+.motion-empty { position: absolute; inset: 0 0 38px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px; text-align: center; }
+.motion-empty strong { color: #e7e1d7; font-family: var(--heading); font-size: 13px; font-weight: 500; }
+.motion-empty svg { color: #d98f3f; }
+.motion-preview-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.motion-preview-bar span { margin-left: auto; color: #8b857b; font-family: var(--mono); font-size: 8px; }
+
+.motion-controls { display: flex; flex-direction: column; gap: 11px; min-width: 0; }
+.motion-slider { display: flex; flex-direction: column; gap: 4px; }
+.motion-slider > span { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.motion-slider b { color: #d9d2c6; font-size: 9px; font-weight: 500; }
+.motion-slider output { color: #f0bd78; font-family: var(--mono); font-size: 9px; }
+.motion-slider input[type="range"] { width: 100%; accent-color: #d98f3f; }
+.motion-slider small { color: #7f796f; font-size: 8px; line-height: 1.45; }
+
+@media (max-width: 640px) {
+  .motion-layout { grid-template-columns: 1fr; }
+  .motion-preview { position: static; }
+}

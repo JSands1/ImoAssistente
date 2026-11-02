@@ -1,0 +1,42 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Administradores (a mesma lista de emails está em VITE_ADMIN_EMAILS). Exige o email verificado pelo Google.
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.get('email_verified', false) == true
+        && request.auth.token.get('email', '') in ['joaoareias123@gmail.com'];
+    }
+
+    // Cada consultor só lê e escreve o que está debaixo do seu próprio users/{uid}.
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Registo de cada pedido à IA (tokens, sem conteúdo). Cada conta só cria os seus; só administradores leem.
+    match /usage/{eventId} {
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['uid', 'kind', 'model', 'inputTokens', 'outputTokens', 'ok', 'at'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.kind in ['report', 'listing', 'market']
+        && request.resource.data.model is string && request.resource.data.model.size() <= 60
+        && request.resource.data.inputTokens is int && request.resource.data.inputTokens >= 0 && request.resource.data.inputTokens <= 5000000
+        && request.resource.data.outputTokens is int && request.resource.data.outputTokens >= 0 && request.resource.data.outputTokens <= 5000000
+        && request.resource.data.ok is bool
+        && request.resource.data.at == request.time;
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // Ficha de cada conta (contagens e última visita). A conta escreve a sua; só ela e os administradores leem.
+    match /stats/{userId} {
+      allow read: if isAdmin() || (request.auth != null && request.auth.uid == userId);
+      allow create, update: if request.auth != null && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly(['email', 'name', 'clients', 'properties', 'appointments', 'lastSeenAt'])
+        && request.resource.data.clients is int && request.resource.data.properties is int && request.resource.data.appointments is int
+        && request.resource.data.lastSeenAt == request.time;
+      allow delete: if false;
+    }
+  }
+}

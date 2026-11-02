@@ -1,0 +1,17 @@
+.messages-layout { display: grid; grid-template-columns: minmax(230px, 0.34fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.messages-list { margin-bottom: 0; align-self: start; }
+.messages-list ul { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; list-style: none; }
+.messages-list li button { width: 100%; padding: 9px 10px; display: flex; flex-direction: column; gap: 4px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02); color: inherit; cursor: pointer; text-align: left; }
+.messages-list li button:hover { border-color: rgba(217, 149, 72, 0.45); }
+.messages-list li button.is-selected { border-color: rgba(217, 149, 72, 0.7); background: rgba(217, 149, 72, 0.08); box-shadow: inset 3px 0 0 #d98f3f; }
+.messages-list li strong { color: #ede8df; font-size: 10px; font-weight: 600; }
+.messages-list li small { color: #8f897e; font-size: 8px; line-height: 1.4; }
+.messages-list-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.messages-main { min-width: 0; }
+.messages-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.studio-field .messages-text { min-height: 170px; line-height: 1.65; }
+.messages-register { display: flex; align-items: center; gap: 8px; color: #b9b2a5; font-size: 9px; cursor: pointer; }
+.messages-register input { width: auto; min-height: 0; }
+
+@media (max-width: 900px) { .messages-layout { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .messages-fields { grid-template-columns: 1fr; } }
